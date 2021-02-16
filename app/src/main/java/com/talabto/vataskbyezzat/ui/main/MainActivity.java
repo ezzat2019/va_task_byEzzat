@@ -2,8 +2,6 @@ package com.talabto.vataskbyezzat.ui.main;
 
 import android.Manifest;
 import android.app.ActivityManager;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -27,12 +25,10 @@ import androidx.core.app.ActivityCompat;
 
 import com.talabto.vataskbyezzat.R;
 import com.talabto.vataskbyezzat.data.model.MathModel;
-import com.talabto.vataskbyezzat.services.MathOPService;
 import com.talabto.vataskbyezzat.services.RunAllTimeService;
 import com.talabto.vataskbyezzat.ui.pane.MathActivity;
 
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -48,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-getLoction();
+        getLoction();
 
         init();
 
@@ -137,13 +133,11 @@ getLoction();
     }
 
     public void getLoction(View view) {
-        LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE );
+        LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         boolean statusOfGPS = manager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        if (!statusOfGPS)
-        {
+        if (!statusOfGPS) {
             Toast.makeText(this, "open gps first", Toast.LENGTH_SHORT).show();
-        }else
-        {
+        } else {
             getLoction();
         }
 
@@ -157,7 +151,7 @@ getLoction();
 
         LocationListener locationListener = new MyLocationListener();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 2);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 2);
 
             return;
         }
@@ -166,7 +160,7 @@ getLoction();
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
             case 2:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -174,8 +168,7 @@ getLoction();
                     try {
 
 
-                    }
-                    catch (SecurityException ex) {
+                    } catch (SecurityException ex) {
                         Log.d("gps", "Location permission did not work!");
                     }
                 }
@@ -209,8 +202,7 @@ getLoction();
                     System.out.println(addresses.get(0).getLocality());
                     cityName = addresses.get(0).getLocality();
                 }
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
             String s = longitude + "\n" + latitude + "\n\nMy Current City is: "
@@ -219,12 +211,15 @@ getLoction();
         }
 
         @Override
-        public void onProviderDisabled(String provider) {}
+        public void onProviderDisabled(String provider) {
+        }
 
         @Override
-        public void onProviderEnabled(String provider) {}
+        public void onProviderEnabled(String provider) {
+        }
 
         @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {}
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+        }
     }
 }

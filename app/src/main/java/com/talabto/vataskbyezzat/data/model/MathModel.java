@@ -3,15 +3,24 @@ package com.talabto.vataskbyezzat.data.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "math")
 public class MathModel implements Parcelable {
 
+    public static final Creator<MathModel> CREATOR = new Creator<MathModel>() {
+        @Override
+        public MathModel createFromParcel(Parcel in) {
+            return new MathModel(in);
+        }
+
+        @Override
+        public MathModel[] newArray(int size) {
+            return new MathModel[size];
+        }
+    };
     @PrimaryKey
 
     @ColumnInfo(name = "id")
@@ -30,6 +39,28 @@ public class MathModel implements Parcelable {
     String date;
     @ColumnInfo(name = "is_pending")
     boolean is_pending;
+
+    public MathModel(int id, String num1, String num2, String result, String time, String op, String date, boolean is_pending) {
+        this.id = id;
+        this.num1 = num1;
+        this.num2 = num2;
+        this.result = result;
+        this.time = time;
+        this.op = op;
+        this.date = date;
+        this.is_pending = is_pending;
+    }
+
+    protected MathModel(Parcel in) {
+        id = in.readInt();
+        num1 = in.readString();
+        num2 = in.readString();
+        result = in.readString();
+        time = in.readString();
+        op = in.readString();
+        date = in.readString();
+        is_pending = in.readByte() != 0;
+    }
 
     @Override
     public String toString() {
@@ -109,28 +140,6 @@ public class MathModel implements Parcelable {
         this.is_pending = is_pending;
     }
 
-    public MathModel(int id, String num1, String num2, String result, String time, String op, String date, boolean is_pending) {
-        this.id = id;
-        this.num1 = num1;
-        this.num2 = num2;
-        this.result = result;
-        this.time = time;
-        this.op = op;
-        this.date = date;
-        this.is_pending = is_pending;
-    }
-
-    protected MathModel(Parcel in) {
-        id = in.readInt();
-        num1 = in.readString();
-        num2 = in.readString();
-        result = in.readString();
-        time = in.readString();
-        op = in.readString();
-        date = in.readString();
-        is_pending = in.readByte() != 0;
-    }
-
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
@@ -147,16 +156,4 @@ public class MathModel implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
-    public static final Creator<MathModel> CREATOR = new Creator<MathModel>() {
-        @Override
-        public MathModel createFromParcel(Parcel in) {
-            return new MathModel(in);
-        }
-
-        @Override
-        public MathModel[] newArray(int size) {
-            return new MathModel[size];
-        }
-    };
 }

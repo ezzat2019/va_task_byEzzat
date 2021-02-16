@@ -9,15 +9,11 @@ import androidx.room.RoomDatabase;
 import com.talabto.vataskbyezzat.data.dao.MathDao;
 import com.talabto.vataskbyezzat.data.model.MathModel;
 
-@Database(entities = {MathModel.class},version = 8,exportSchema = false)
+@Database(entities = {MathModel.class}, version = 8, exportSchema = false)
 abstract public class BaseDataBase extends RoomDatabase {
-    abstract public MathDao  getMathDao();
-
     private static volatile BaseDataBase INSTANCE;
 
-
-
-    static  public BaseDataBase getDatabase(final Context context) {
+    static public BaseDataBase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (BaseDataBase.class) {
                 if (INSTANCE == null) {
@@ -30,5 +26,7 @@ abstract public class BaseDataBase extends RoomDatabase {
         }
         return INSTANCE;
     }
+
+    abstract public MathDao getMathDao();
 
 }

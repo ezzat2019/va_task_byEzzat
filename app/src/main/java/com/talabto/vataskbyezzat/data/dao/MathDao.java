@@ -20,6 +20,6 @@ public interface MathDao {
     LiveData<List<MathModel>> getAllOp();
 
     @Query("UPDATE math SET  result=:res WHERE id = :id1")
-    int updateMathOP(int id1,String res);
+    int updateMathOP(int id1, String res);
 
 }

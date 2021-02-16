@@ -27,11 +27,11 @@ import java.util.List;
 
 public class MathActivity extends AppCompatActivity {
 
+    boolean isOne = true;
     private RecyclerView recyclerView;
     private MathAdapter adapter;
     private List<MathModel> list = new ArrayList<>();
     private MathViewModel mathViewModel;
-    boolean isOne = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
