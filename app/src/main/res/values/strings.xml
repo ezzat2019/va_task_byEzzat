@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">VA Task By Ezzat</string>
+    <array name="op">
+        <item>add</item>
+        <item>sub</item>
+        <item>mul</item>
+        <item>div</item>
+    </array>
+</resources>
