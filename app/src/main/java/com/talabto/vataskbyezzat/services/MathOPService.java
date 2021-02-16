@@ -41,18 +41,16 @@ public class MathOPService extends IntentService {
             );
 
 
-
             double num1 = Double.parseDouble(mathModel.getNum1());
             double num2 = Double.parseDouble(mathModel.getNum2());
             String op = mathModel.getOp();
             Double res = 0.0;
 
-            Log.d("eeeeeeeeeeee", "on op "+op);
-            Log.d("eeeeeeeeeeee", "on op2 "+op.equals("add"));
-            Log.d("eeeeeeeeeeee", "on op2 "+op.equals("sub"));
-            Log.d("eeeeeeeeeeee", "on op2 "+op.equals("mul"));
-            Log.d("eeeeeeeeeeee", "on op2 "+op.equals("div"));
-
+            Log.d("eeeeeeeeeeee", "on op " + op);
+            Log.d("eeeeeeeeeeee", "on op2 " + op.equals("add"));
+            Log.d("eeeeeeeeeeee", "on op2 " + op.equals("sub"));
+            Log.d("eeeeeeeeeeee", "on op2 " + op.equals("mul"));
+            Log.d("eeeeeeeeeeee", "on op2 " + op.equals("div"));
 
 
             if (op.equals("add")) {
